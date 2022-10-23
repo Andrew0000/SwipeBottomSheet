@@ -64,12 +64,6 @@ or in code without adding extra NestedScrollView (suitable with RecyclerView):
 SwipeBottomSheet
             .wrap(yourRecyclerView)
             .apply {
-                elevation = 6.toPx()
-                clip = SwipeBottomSheet.Clip(
-                    paddingTop = 80f.toPx(),
-                    cornersRadiusTop = 40f.toPx(),
-                )
-                addSwipeFinishListener { removeBottomSheet() }
-                animateAppearance(parentView = layoutRootView)
+                // other customisation
             }
 ```
