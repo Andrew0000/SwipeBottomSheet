@@ -287,6 +287,19 @@ class SwipeBottomSheet @JvmOverloads constructor(
     companion object {
 
         /**
+         * Wraps given [View] with [SwipeBottomSheet].
+         */
+        fun wrap(view: View): SwipeBottomSheet {
+            val bs = SwipeBottomSheet(view.context)
+            bs.layoutParams = LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT,
+            )
+            bs.addView(view)
+            return bs
+        }
+
+        /**
          * Wraps given [View] with [NestedScrollView] and puts it into [SwipeBottomSheet].
          */
         fun wrapNested(view: View): SwipeBottomSheet {
