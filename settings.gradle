@@ -4,8 +4,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven { url "https://jitpack.io" }
     }
 }
-rootProject.name = "Swipe Bottom Sheet"
-include ':app'
+
+rootProject.name = "RxUtils"
+if (!System.env.JITPACK) {
+    include ':app'
+}
 include ':lib'
