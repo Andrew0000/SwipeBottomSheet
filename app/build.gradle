@@ -29,11 +29,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "libDep"
+    productFlavors {
+        libDepLocal { dimension "libDep" }
+        libDepJitpack { dimension "libDep" }
+    }
 }
 
 dependencies {
 
-    implementation project(":lib")
+    libDepLocalImplementation project(":lib")
+    libDepJitpackImplementation 'com.github.Andrew0000:SwipeBottomSheet:1.+'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
