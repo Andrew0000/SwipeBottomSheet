@@ -21,6 +21,8 @@ import kotlin.math.abs
  * BottomSheet that works well with [NestedScrollView].
  *
  * You can place [NestedScrollView] inside in xml or create from code with [SwipeBottomSheet.wrapNested] function.
+ *
+ * Note: this is only translucent wrapper, actual background should be set in the content view.
  */
 @Suppress("Unused", "MemberVisibilityCanBePrivate")
 class SwipeBottomSheet @JvmOverloads constructor(
