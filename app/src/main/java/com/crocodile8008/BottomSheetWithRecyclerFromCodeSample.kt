@@ -19,7 +19,6 @@ class BottomSheetWithRecyclerFromCodeSample(
         if (bottomSheet != null) {
             return
         }
-        val items = listOf(1, 2, 3, 4, 5)
         val recycler = RecyclerView(layoutRootView.context).apply {
             layoutManager = LinearLayoutManager(layoutRootView.context)
             layoutParams = ViewGroup.LayoutParams(
@@ -28,10 +27,32 @@ class BottomSheetWithRecyclerFromCodeSample(
             )
             setPadding(0, 80f.toPx().toInt(), 0, 0)
         }
-        val adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        val adapter = createAdapter(listOf(1, 2, 3, 4, 5))
+        recycler.adapter = adapter
+        bottomSheet = SwipeBottomSheet(layoutRootView.context)
+            .apply {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                )
+                addView(recycler)
+                elevation = 6.toPx()
+                clip = SwipeBottomSheet.Clip(
+                    paddingTop = 80f.toPx(),
+                    cornersRadiusTop = 2f.toPx(),
+                )
+                addSwipeFinishListener { removeBottomSheet() }
+                animateAppearance(parentView = layoutRootView)
+            }
+        layoutRootView.addView(bottomSheet)
+    }
+
+    private fun createAdapter(items: List<Int>) =
+        object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
                 object : RecyclerView.ViewHolder(
                     TextView(parent.context).apply {
+                        textSize = 24f
                         layoutParams = ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             300.toPx().toInt(),
@@ -57,24 +78,6 @@ class BottomSheetWithRecyclerFromCodeSample(
             override fun getItemCount(): Int =
                 items.size
         }
-        recycler.adapter = adapter
-        bottomSheet = SwipeBottomSheet(layoutRootView.context)
-            .apply {
-                layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                )
-                addView(recycler)
-                elevation = 6.toPx()
-                clip = SwipeBottomSheet.Clip(
-                    paddingTop = 80f.toPx(),
-                    cornersRadiusTop = 2f.toPx(),
-                )
-                addSwipeFinishListener { removeBottomSheet() }
-                animateAppearance(parentView = layoutRootView)
-            }
-        layoutRootView.addView(bottomSheet)
-    }
 
     private fun removeBottomSheet() {
         if (bottomSheet == null) {
