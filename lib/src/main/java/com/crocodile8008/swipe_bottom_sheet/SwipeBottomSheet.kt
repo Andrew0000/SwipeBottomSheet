@@ -17,14 +17,17 @@ import androidx.core.widget.NestedScrollView
 import com.crocodile8008.R
 import kotlin.math.abs
 
+/**
+ * BottomSheet that works well with [NestedScrollView].
+ *
+ * You can place [NestedScrollView] inside in xml or create from code with [SwipeBottomSheet.wrapNested] function.
+ */
 @Suppress("Unused", "MemberVisibilityCanBePrivate")
 class SwipeBottomSheet @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
 ) : ViewGroup(context, attrs, defStyleAttr) {
-
-    var thresholdToInterceptDrag = 6.toPx()
 
     var isSwipeLocked = false
 
@@ -41,6 +44,8 @@ class SwipeBottomSheet @JvmOverloads constructor(
         set(@IntRange(from = 0, to = 255) bgAlpha) {
             field = bgAlpha.coerceIn(0, 255)
         }
+
+    private val thresholdToInterceptDrag = 6.toPx()
 
     private val swipeFinishListeners = mutableListOf<() -> Unit>()
 
@@ -277,6 +282,9 @@ class SwipeBottomSheet @JvmOverloads constructor(
 
     companion object {
 
+        /**
+         * Wraps given [View] with [NestedScrollView] and puts it into [SwipeBottomSheet].
+         */
         fun wrapNested(view: View): SwipeBottomSheet {
             val bs = SwipeBottomSheet(view.context)
             bs.layoutParams = LayoutParams(
