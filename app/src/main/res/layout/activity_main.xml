@@ -3,19 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/showButton"
+        android:id="@+id/showButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show SwipeBottomSheet"
+        android:text="Show SwipeBottomSheet 1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/showButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show SwipeBottomSheet 2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showButton1"
         tools:ignore="HardcodedText" />
 
     <com.crocodile8008.swipe_bottom_sheet.SwipeBottomSheet
@@ -25,7 +36,8 @@
         android:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        tools:visibility="invisible">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

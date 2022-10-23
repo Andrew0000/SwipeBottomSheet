@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
+import androidx.core.widget.NestedScrollView
 import com.crocodile8008.R
 
 @Suppress("Unused", "MemberVisibilityCanBePrivate")
@@ -277,6 +278,25 @@ class SwipeBottomSheet @JvmOverloads constructor(
     private fun preventOverScrolling() {
         if (scrollY > 0) {
             scrollY = 0
+        }
+    }
+
+    companion object {
+
+        fun wrapNested(view: View): SwipeBottomSheet {
+            val bs = SwipeBottomSheet(view.context)
+            bs.layoutParams = LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT,
+            )
+            val nestedScrollView = NestedScrollView(view.context)
+            nestedScrollView.layoutParams = LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT,
+            )
+            nestedScrollView.addView(view)
+            bs.addView(nestedScrollView)
+            return bs
         }
     }
 
