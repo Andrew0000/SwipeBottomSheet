@@ -8,7 +8,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RxUtils"
+rootProject.name = "Swipe Bottom Sheet"
 if (!System.env.JITPACK) {
     include ':app'
 }
