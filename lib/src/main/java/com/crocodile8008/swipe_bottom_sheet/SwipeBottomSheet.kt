@@ -91,6 +91,11 @@ class SwipeBottomSheet @JvmOverloads constructor(
         animateToEnd(shouldClose = false)
     }
 
+    fun animateAppearance(parentView: View? = parent as? View) {
+        scrollY = -(parentView?.measuredHeight ?: 0)
+        animateToEnd(shouldClose = false)
+    }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val childCount = childCount

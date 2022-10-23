@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                     cornersRadiusTop = 40f.toPx(),
                 )
                 addSwipeFinishListener { removeBottomSheet2(this) }
+                animateAppearance(parentView = layoutRootView)
             }
         layoutRootView.addView(bottomSheet2)
     }
