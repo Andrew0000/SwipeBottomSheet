@@ -47,6 +47,8 @@ class SwipeBottomSheet @JvmOverloads constructor(
             field = bgAlpha.coerceIn(0, 255)
         }
 
+    var animationDuration = 120L
+
     private val thresholdToInterceptDrag = 6.toPx()
 
     private val swipeFinishListeners = mutableListOf<() -> Unit>()
@@ -258,7 +260,7 @@ class SwipeBottomSheet @JvmOverloads constructor(
                 }
             }
             interpolator = AccelerateDecelerateInterpolator()
-            duration = 120
+            duration = animationDuration
             start()
         }
     }
