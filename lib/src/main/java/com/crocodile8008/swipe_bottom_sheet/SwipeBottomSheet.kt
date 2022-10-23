@@ -48,7 +48,7 @@ class SwipeBottomSheet @JvmOverloads constructor(
             field = bgAlpha.coerceIn(0, 255)
         }
 
-    var animationDuration = 120L
+    var animationDuration = 150L
 
     private val thresholdToInterceptDrag = 6.toPx()
 
