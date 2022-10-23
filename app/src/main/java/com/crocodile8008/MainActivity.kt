@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 cornersRadiusTop = 16f.toPx(),
             )
             swipeListener = object : SwipeBottomSheet.SwipeListener {
-                override fun onSwipeFinished(view: View?, isBottom: Boolean) {
+                override fun onSwipeFinished(view: View, isBottom: Boolean) {
                     if (isBottom) {
                         visibility = View.INVISIBLE
                     }

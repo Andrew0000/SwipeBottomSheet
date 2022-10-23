@@ -15,6 +15,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.core.widget.NestedScrollView
 import com.crocodile8008.R
+import kotlin.math.abs
 
 @Suppress("Unused", "MemberVisibilityCanBePrivate")
 class SwipeBottomSheet @JvmOverloads constructor(
@@ -35,6 +36,7 @@ class SwipeBottomSheet @JvmOverloads constructor(
         set(@FloatRange(from = 0.0, to = 1.0) swipeBackFactor) {
             field = swipeBackFactor.coerceIn(0.0f, 1.0f)
         }
+
     var bgAlpha = 125
         set(@IntRange(from = 0, to = 255) maskAlpha) {
             field = maskAlpha.coerceIn(0, 255)
@@ -51,8 +53,6 @@ class SwipeBottomSheet @JvmOverloads constructor(
     private var innerWidth = 0
 
     private var innerHeight = 0
-
-    private var swipeBackFraction = 0f
 
     private var leftOffset = 0
 
@@ -138,7 +138,12 @@ class SwipeBottomSheet @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.drawARGB(this.bgAlpha - (this.bgAlpha * swipeBackFraction).toInt(), 0, 0, 0)
+        var bgAlphaFinal = bgAlpha
+        if (height > 0) {
+            val fraction = (1f - abs(scrollY.toFloat()) / height.toFloat()).coerceIn(0f, 1f)
+            bgAlphaFinal = (bgAlpha * fraction).toInt()
+        }
+        canvas.drawARGB(bgAlphaFinal, 0, 0, 0)
     }
 
     override fun dispatchDraw(canvas: Canvas) {
@@ -267,11 +272,7 @@ class SwipeBottomSheet @JvmOverloads constructor(
     }
 
     private fun createDefaultSwipeBackListener() = object : SwipeListener {
-        override fun onPositionChanged(view: View?, swipeBackFraction: Float, swipeBackFactor: Float) {
-            invalidate()
-        }
-
-        override fun onSwipeFinished(view: View?, isBottom: Boolean) {
+        override fun onSwipeFinished(view: View, isBottom: Boolean) {
             //Empty
         }
     }
@@ -315,8 +316,6 @@ class SwipeBottomSheet @JvmOverloads constructor(
 
     interface SwipeListener {
 
-        fun onPositionChanged(view: View?, swipeBackFraction: Float, swipeBackFactor: Float) {}
-
-        fun onSwipeFinished(view: View?, isBottom: Boolean) {}
+        fun onSwipeFinished(view: View, isBottom: Boolean) {}
     }
 }
