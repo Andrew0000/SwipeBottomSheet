@@ -29,6 +29,16 @@
         app:layout_constraintTop_toBottomOf="@id/showButton1"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/showButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show SwipeBottomSheet 3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showButton2"
+        tools:ignore="HardcodedText" />
+
     <com.crocodile8008.swipe_bottom_sheet.SwipeBottomSheet
         android:id="@+id/swipeBottomSheet"
         android:layout_width="match_parent"
