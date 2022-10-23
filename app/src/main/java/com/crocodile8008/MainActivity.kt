@@ -6,24 +6,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isVisible
 import com.crocodile8008.swipe_bottom_sheet.SwipeBottomSheet
 import com.crocodile8008.swipe_bottom_sheet.toPx
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var layoutRootView: ViewGroup
-
+    private lateinit var bottomSheet1: SwipeBottomSheet
     private var bottomSheet2: SwipeBottomSheet? = null
+
+    private val backCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (bottomSheet1.isVisible) {
+                bottomSheet1.animateToBottom()
+                return
+            }
+            if (bottomSheet2 != null) {
+                bottomSheet2?.animateToBottom()
+                return
+            }
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupView()
+        onBackPressedDispatcher.addCallback(this, backCallback)
     }
 
     private fun setupView() {
         layoutRootView = findViewById(R.id.rootView)
-        val bottomSheet1 = findViewById<SwipeBottomSheet>(R.id.swipeBottomSheet)
+        bottomSheet1 = findViewById(R.id.swipeBottomSheet)
         val showButton1 = findViewById<Button>(R.id.showButton1)
         val showButton2 = findViewById<Button>(R.id.showButton2)
 

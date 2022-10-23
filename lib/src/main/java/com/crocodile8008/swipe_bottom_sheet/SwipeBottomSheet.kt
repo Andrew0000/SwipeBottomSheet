@@ -91,6 +91,10 @@ class SwipeBottomSheet @JvmOverloads constructor(
         animateToEnd(shouldClose = false)
     }
 
+    fun animateToBottom() {
+        animateToEnd(shouldClose = true)
+    }
+
     fun animateAppearance(parentView: View? = parent as? View) {
         scrollY = -(parentView?.measuredHeight ?: 0)
         animateToEnd(shouldClose = false)
@@ -249,8 +253,7 @@ class SwipeBottomSheet @JvmOverloads constructor(
             addUpdateListener { valueAnimator ->
                 val value = valueAnimator.animatedValue as Float
                 scrollY = value.toInt()
-                invalidate()
-                if (value >= 0) {
+                if (value >= 0 && !shouldClose) {
                     swipeListener?.onSwipeFinished(this@SwipeBottomSheet, isBottom = false)
                 } else if (value <= -height && shouldClose) {
                     swipeFinishListeners.forEach { it.invoke() }
