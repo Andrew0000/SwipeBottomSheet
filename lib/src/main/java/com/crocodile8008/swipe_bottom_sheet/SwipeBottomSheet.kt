@@ -33,13 +33,13 @@ class SwipeBottomSheet @JvmOverloads constructor(
     var swipeListener: SwipeListener? = null
 
     var backFactor = 0.5f
-        set(@FloatRange(from = 0.0, to = 1.0) swipeBackFactor) {
-            field = swipeBackFactor.coerceIn(0.0f, 1.0f)
+        set(@FloatRange(from = 0.0, to = 1.0) backFactor) {
+            field = backFactor.coerceIn(0.0f, 1.0f)
         }
 
     var bgAlpha = 125
-        set(@IntRange(from = 0, to = 255) maskAlpha) {
-            field = maskAlpha.coerceIn(0, 255)
+        set(@IntRange(from = 0, to = 255) bgAlpha) {
+            field = bgAlpha.coerceIn(0, 255)
         }
 
     private val swipeFinishListeners = mutableListOf<() -> Unit>()
@@ -48,23 +48,13 @@ class SwipeBottomSheet @JvmOverloads constructor(
 
     private val velocity: VelocityTracker = VelocityTracker.obtain()
 
-    private var innerScrollView: View? = null
-
-    private var innerWidth = 0
-
-    private var innerHeight = 0
-
-    private var leftOffset = 0
-
-    private var topOffset = 0
-
     private var startYTouch = 0
 
     private var nestedScrollStarted = 0
 
-    private var returnAnimation: ValueAnimator? = null
+    private var slideAnimation: ValueAnimator? = null
 
-    private lateinit var dragContentView: View
+    private lateinit var innerContentView: View
 
     init {
         setWillNotDraw(false)
@@ -110,9 +100,9 @@ class SwipeBottomSheet @JvmOverloads constructor(
         var defaultMeasuredHeight = 0
         if (childCount > 0) {
             measureChildren(widthMeasureSpec, heightMeasureSpec)
-            dragContentView = getChildAt(0)
-            defaultMeasuredWidth = dragContentView.measuredWidth
-            defaultMeasuredHeight = dragContentView.measuredHeight
+            innerContentView = getChildAt(0)
+            defaultMeasuredWidth = innerContentView.measuredWidth
+            defaultMeasuredHeight = innerContentView.measuredHeight
         }
         val measuredWidth = View.resolveSize(defaultMeasuredWidth, widthMeasureSpec) + paddingLeft + paddingRight
         val measuredHeight = View.resolveSize(defaultMeasuredHeight, heightMeasureSpec) + paddingTop + paddingBottom
@@ -121,19 +111,14 @@ class SwipeBottomSheet @JvmOverloads constructor(
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        if (childCount == 0) return
-
-        val left = paddingLeft + leftOffset
-        val top = paddingTop + topOffset
-        val right = left + dragContentView.measuredWidth
-        val bottom = top + dragContentView.measuredHeight
-        dragContentView.layout(left, top, right, bottom)
-
-        if (changed) {
-            innerWidth = width
-            innerHeight = height
+        if (childCount == 0) {
+            return
         }
-        innerScrollView = Utils.findScrollableView(this)
+        val left = paddingLeft
+        val top = paddingTop
+        val right = left + innerContentView.measuredWidth
+        val bottom = top + innerContentView.measuredHeight
+        innerContentView.layout(left, top, right, bottom)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -254,7 +239,7 @@ class SwipeBottomSheet @JvmOverloads constructor(
         cancelPreviousAnimation()
 
         val endY = if (shouldClose) -height.toFloat() else 0f
-        returnAnimation = ValueAnimator.ofFloat(scrollY.toFloat(), endY).apply {
+        slideAnimation = ValueAnimator.ofFloat(scrollY.toFloat(), endY).apply {
             addUpdateListener { valueAnimator ->
                 val value = valueAnimator.animatedValue as Float
                 scrollY = value.toInt()
@@ -278,9 +263,9 @@ class SwipeBottomSheet @JvmOverloads constructor(
     }
 
     private fun cancelPreviousAnimation() {
-        returnAnimation?.apply {
+        slideAnimation?.apply {
             cancel()
-            returnAnimation = null
+            slideAnimation = null
         }
     }
 
