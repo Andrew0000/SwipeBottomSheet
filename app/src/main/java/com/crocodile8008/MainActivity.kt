@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var layoutRootView: ViewGroup
     private lateinit var bottomSheet1: SwipeBottomSheet
-    private var bottomSheet2: SwipeBottomSheet? = null
+
+    private lateinit var bottomSheetFromCodeSample: BottomSheetFromCodeSample
 
     private val backCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -23,8 +24,8 @@ class MainActivity : AppCompatActivity() {
                 bottomSheet1.animateToBottom()
                 return
             }
-            if (bottomSheet2 != null) {
-                bottomSheet2?.animateToBottom()
+            if (bottomSheetFromCodeSample.bottomSheet != null) {
+                bottomSheetFromCodeSample.bottomSheet?.animateToBottom()
                 return
             }
             finish()
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupView()
+        bottomSheetFromCodeSample = BottomSheetFromCodeSample(layoutRootView)
         onBackPressedDispatcher.addCallback(this, backCallback)
     }
 
@@ -64,31 +66,41 @@ class MainActivity : AppCompatActivity() {
         }
 
         showButton2.setOnClickListener {
-            if (bottomSheet2 == null) {
-                showBottomSheet2()
-            } else {
-                removeBottomSheet2(bottomSheet2)
-            }
+            bottomSheetFromCodeSample.showBottomSheet()
         }
     }
 
-    private fun showBottomSheet2() {
-        bottomSheet2 = SwipeBottomSheet
-            .wrapNested(LayoutInflater.from(this).inflate(R.layout.content_2, layoutRootView, false))
+}
+
+private class BottomSheetFromCodeSample(
+    private val layoutRootView: ViewGroup,
+) {
+
+    var bottomSheet: SwipeBottomSheet? = null
+
+    fun showBottomSheet() {
+        if (bottomSheet != null) {
+            return
+        }
+        bottomSheet = SwipeBottomSheet
+            .wrapNested(LayoutInflater.from(layoutRootView.context).inflate(R.layout.content_2, layoutRootView, false))
             .apply {
                 elevation = 6.toPx()
                 clip = SwipeBottomSheet.Clip(
                     paddingTop = 80f.toPx(),
                     cornersRadiusTop = 40f.toPx(),
                 )
-                addSwipeFinishListener { removeBottomSheet2(this) }
+                addSwipeFinishListener { removeBottomSheet() }
                 animateAppearance(parentView = layoutRootView)
             }
-        layoutRootView.addView(bottomSheet2)
+        layoutRootView.addView(bottomSheet)
     }
 
-    private fun removeBottomSheet2(bs: SwipeBottomSheet?) {
-        layoutRootView.removeView(bs)
-        bottomSheet2 = null
+    private fun removeBottomSheet() {
+        if (bottomSheet == null) {
+            return
+        }
+        layoutRootView.removeView(bottomSheet)
+        bottomSheet = null
     }
 }
