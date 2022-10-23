@@ -1,4 +1,4 @@
-package com.crocodile8008
+package crocodile8008
 
 import org.junit.Test
 

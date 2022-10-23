@@ -1,4 +1,4 @@
-package com.crocodile8008
+package crocodile8008.swipe_bottom_sheet
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import crocodile8008.swipe_bottom_sheet.SwipeBottomSheet
-import crocodile8008.swipe_bottom_sheet.toPx
 
 class BottomSheetWithRecyclerFromCodeSample(
     private val layoutRootView: ViewGroup,

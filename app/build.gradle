@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.crocodile8008"
+        applicationId "crocodile8008.swipe_bottom_sheet"
         minSdk 21
         targetSdk 33
         versionCode 1

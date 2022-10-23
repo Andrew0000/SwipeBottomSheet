@@ -15,7 +15,6 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
-import crocodile8008.R
 import kotlin.math.abs
 
 /**

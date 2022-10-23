@@ -1,9 +1,7 @@
-package com.crocodile8008
+package crocodile8008.swipe_bottom_sheet
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import crocodile8008.swipe_bottom_sheet.SwipeBottomSheet
-import crocodile8008.swipe_bottom_sheet.toPx
 
 class BottomSheetFromCodeSample(
     private val layoutRootView: ViewGroup,

@@ -1,4 +1,4 @@
-package com.crocodile8008
+package crocodile8008.swipe_bottom_sheet
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
-import crocodile8008.swipe_bottom_sheet.SwipeBottomSheet
-import crocodile8008.swipe_bottom_sheet.toPx
 
 class MainActivity : AppCompatActivity() {
 

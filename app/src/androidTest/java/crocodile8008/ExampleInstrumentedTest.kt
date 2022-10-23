@@ -1,4 +1,4 @@
-package com.crocodile8008
+package crocodile8008
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.crocodile8008", appContext.packageName)
+        assertEquals("crocodile8008", appContext.packageName)
     }
 }
