@@ -2,8 +2,6 @@ package com.crocodile8008
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.Button
 import com.crocodile8008.swipe_bottom_sheet.SwipeBottomSheet

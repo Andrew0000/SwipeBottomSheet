@@ -152,7 +152,6 @@ class SwipeBottomSheet @JvmOverloads constructor(
         if (isSwipeLocked) {
             return super.onInterceptTouchEvent(event)
         }
-        android.util.Log.i("test_ ", "onInterceptTouchEvent nestedScrollStarted: $nestedScrollStarted / ${event.y} / $startYTouch") //TODO del
         if (nestedScrollStarted <= 0 && (event.y - startYTouch) > thresholdToInterceptDrag) {
             return true
         }
