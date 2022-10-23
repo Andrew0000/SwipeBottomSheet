@@ -1,4 +1,4 @@
-package com.crocodile8008
+package crocodile8008
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

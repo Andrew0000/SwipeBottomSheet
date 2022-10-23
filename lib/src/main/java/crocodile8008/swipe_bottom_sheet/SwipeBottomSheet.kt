@@ -1,4 +1,4 @@
-package com.crocodile8008.swipe_bottom_sheet
+package crocodile8008.swipe_bottom_sheet
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -15,7 +15,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
-import com.crocodile8008.R
+import crocodile8008.R
 import kotlin.math.abs
 
 /**

@@ -1,4 +1,4 @@
-package com.crocodile8008.swipe_bottom_sheet
+package crocodile8008.swipe_bottom_sheet
 
 import android.content.res.Resources
 import android.util.TypedValue
