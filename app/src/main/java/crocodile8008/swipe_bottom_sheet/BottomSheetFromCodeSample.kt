@@ -13,9 +13,10 @@ class BottomSheetFromCodeSample(
         if (bottomSheet != null) {
             return
         }
-        bottomSheet = SwipeBottomSheet.wrapNested(
-            LayoutInflater.from(layoutRootView.context).inflate(R.layout.content_2, layoutRootView, false)
-        )
+        bottomSheet = SwipeBottomSheet
+            .wrapNested(
+                LayoutInflater.from(layoutRootView.context).inflate(R.layout.content_2, layoutRootView, false)
+            )
             .apply {
                 elevation = 6.toPx()
                 clip = SwipeBottomSheet.Clip(
