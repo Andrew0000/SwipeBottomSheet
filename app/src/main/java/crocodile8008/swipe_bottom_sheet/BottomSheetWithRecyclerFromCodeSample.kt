@@ -27,13 +27,13 @@ class BottomSheetWithRecyclerFromCodeSample(
         }
         val adapter = createAdapter(listOf(1, 2, 3, 4, 5))
         recycler.adapter = adapter
-        bottomSheet = SwipeBottomSheet(layoutRootView.context)
+        bottomSheet = SwipeBottomSheet
+            .wrap(recycler)
             .apply {
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
-                addView(recycler)
                 elevation = 6.toPx()
                 clip = SwipeBottomSheet.Clip(
                     paddingTop = 80f.toPx(),
