@@ -294,6 +294,8 @@ class SwipeBottomSheet @JvmOverloads constructor(
                 LayoutParams.MATCH_PARENT,
             )
             val nestedScrollView = NestedScrollView(view.context)
+            // onMeasure() isn't happening inside NestedScrollView without isFillViewport (see source code)
+            nestedScrollView.isFillViewport = true
             nestedScrollView.layoutParams = LayoutParams(
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT,
