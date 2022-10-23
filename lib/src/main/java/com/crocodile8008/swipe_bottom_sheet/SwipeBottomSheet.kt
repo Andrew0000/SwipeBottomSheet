@@ -14,11 +14,12 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
 import com.crocodile8008.R
 import kotlin.math.abs
 
 /**
- * BottomSheet that works well with [NestedScrollView].
+ * BottomSheet that works well with [NestedScrollView] and [RecyclerView].
  *
  * You can place [NestedScrollView] inside in xml or create from code with [SwipeBottomSheet.wrapNested] function.
  *
