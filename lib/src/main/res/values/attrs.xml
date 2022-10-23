@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SwipeBottomSheet">
+        <attr name="backFactor" format="float" />
+        <attr name="bgAlpha" format="integer" />
+    </declare-styleable>
+
+</resources>
