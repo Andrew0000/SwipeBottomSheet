@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:text="Hello from inner fragment 1"
+        android:background="#5c5"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:text="Hello from inner fragment 2"
+        android:background="#55c"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:text="Hello from inner fragment 3"
+        android:background="#c55"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:text="Hello from inner fragment 4"
+        android:background="#cc5"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

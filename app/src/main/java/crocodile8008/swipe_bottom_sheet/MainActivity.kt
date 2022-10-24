@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomSheetFromCodeSample: BottomSheetFromCodeSample
     private lateinit var bottomSheetWithRecyclerFromCodeSample: BottomSheetWithRecyclerFromCodeSample
+    private lateinit var bottomSheetWithFragmentSample: BottomSheetWithFragmentSample
 
     private val backCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
                 bottomSheetWithRecyclerFromCodeSample.bottomSheet?.animateToBottom()
                 return
             }
+            if (bottomSheetWithFragmentSample.bottomSheet != null) {
+                bottomSheetWithFragmentSample.bottomSheet?.animateToBottom()
+                return
+            }
             finish()
         }
     }
@@ -40,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         setupView()
         bottomSheetFromCodeSample = BottomSheetFromCodeSample(layoutRootView)
         bottomSheetWithRecyclerFromCodeSample = BottomSheetWithRecyclerFromCodeSample(layoutRootView)
+        bottomSheetWithFragmentSample = BottomSheetWithFragmentSample(this, layoutRootView)
         onBackPressedDispatcher.addCallback(this, backCallback)
     }
 
@@ -49,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         val showButton1 = findViewById<Button>(R.id.showButton1)
         val showButton2 = findViewById<Button>(R.id.showButton2)
         val showButton3 = findViewById<Button>(R.id.showButton3)
+        val showButton4 = findViewById<Button>(R.id.showButton4)
 
         bottomSheet1.apply {
             clip = SwipeBottomSheet.Clip(
@@ -75,6 +82,10 @@ class MainActivity : AppCompatActivity() {
 
         showButton3.setOnClickListener {
             bottomSheetWithRecyclerFromCodeSample.showBottomSheet()
+        }
+
+        showButton4.setOnClickListener {
+            bottomSheetWithFragmentSample.showBottomSheet()
         }
     }
 

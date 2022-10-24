@@ -10,9 +10,10 @@
 
     <Button
         android:id="@+id/showButton1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show BottomSheet 1"
+        android:layout_marginHorizontal="40dp"
+        android:text="BottomSheet from xml"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,9 +23,10 @@
 
     <Button
         android:id="@+id/showButton2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show BottomSheet 2"
+        android:layout_marginHorizontal="40dp"
+        android:text="BottomSheet from code"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showButton1"
@@ -34,12 +36,25 @@
 
     <Button
         android:id="@+id/showButton3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show BottomSheet 3"
+        android:layout_marginHorizontal="40dp"
+        android:text="BottomSheet + Recycler"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/showButton2"
+        app:layout_constraintBottom_toTopOf="@id/showButton4"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/showButton4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="BottomSheet + Inner Fragment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showButton3"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="HardcodedText" />
 
